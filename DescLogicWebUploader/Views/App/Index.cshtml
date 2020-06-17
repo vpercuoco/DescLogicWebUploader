@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@*This is a comment*@
+
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Dropdown Example
+        </button>
+        <ul class="dropdown-menu">
+            @{string[] Expeditions = { "x355", "x356", "x360", "x366" }; }
+            @foreach (var x in Expeditions)
+            {
+                <li><a href="#">@x</a></li>
+            }
+        </ul>
+    </div>
+
+
+<br>
+<div>Select a description file:</div>
+<br>
+<div><input id="File1" type="file" /></div>
+<br>
+<div>Select a measurement file:</div>
+<br>
+<div><input id="File2" type="file" /></div>
+<br>
+
+<aside>Sidebar</aside>
+
+<div>
+    <!--  <iframe width="933" height="700" src="https://app.powerbi.com/view?r=eyJrIjoiZDE5Yjk0YzItYjdkMC00Y2FlLWI3MmEtMjZkM2QxMDFlZTNmIiwidCI6ImExYzg5ZjI4LWYwYWMtNGU3MS05ZmNhLWVmZWE2MzMzNmU5MyJ9" frameborder="0" allowFullScreen="true"></iframe> -->
+</div>

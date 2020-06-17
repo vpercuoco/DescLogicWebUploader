@@ -1,0 +1,113 @@
+﻿@**I need to add the namespace of C# models I'm creating *@
+@using FirstASPNETCOREProject.ViewModels;
+@*I need to identify the model which 'fits' this page, that is the properties of the model can be
+    bound to entities on the view page, using "asp-for"*@
+@model TestModel
+@{
+    ViewData["Title"] = "Page for File Uploads";
+}
+@section Scripts{
+}
+<div asp-validation-summary="ModelOnly" style="color:white"> </div>
+<div>
+    <div class="col-4">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <div>
+                    <label class="font-weight-bold h6">Add a Description Files</label>
+                    <input asp-for="DescriptionFiles" type="file" multiple="multiple" class="form-control-file" />
+                    <span asp-validation-for="DescriptionFiles"></span>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div>
+                    <label class="font-weight-bold h6">Add Measurement Files</label>
+                    <input asp-for="MeasurementFiles" type="file" multiple="multiple" class="form-control-file">
+                    <span asp-validation-for="MeasurementFiles"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input asp-for="SessionID" type="hidden" value=@Model.SessionID />
+                <span asp-validation-for="SessionID"></span>
+            </div>
+            <br>
+            <input type="submit" value="Submit files" class="btn btn-outline-primary" />
+            <br>
+            <br>
+            <div class="container">
+                <label class="font-weight-bold h6">Measurement Files:</label>
+                <ul class="bg-white">
+                    @if (Model != null && Model.MeasurementFilenames.Count > 0)
+                    {
+                        @for (int i = 0; i < Model.MeasurementFilenames.Count; i++)
+                        {
+                            <li><input type="hidden" asp-for="MeasurementFilenames[i]" />  @Model.MeasurementFilenames[i]</li>
+                            <br>
+                        }
+                    }
+                </ul>
+            </div>
+            <br>
+            <div class="container">
+                <label class="font-weight-bold h6">Active Description Files:</label>
+                <ul class="bg-white">
+                    @if (Model != null && Model.DescriptionFilenames.Count > 0)
+                    {
+                        
+                        @for (int i = 0; i < Model.DescriptionFilenames.Count; i++)
+                        {
+                            <li><input type="hidden" asp-for="DescriptionFilenames[i]" />  @Model.DescriptionFilenames[i]</li>
+                        }
+                    }
+                </ul>
+            </div>
+
+            <br>
+            <div>
+
+
+                @if (Model.DescriptionFilenames.Count > 0)
+                {
+
+                    @Html.ActionLink("Description File(s)", "DownloadZipFile", "App", new { sessionID = Model.SessionID, path = Model.DescriptionExportDirectory }); <span class="badge">@Model.DescriptionFilenames.Count.ToString()</span>
+                    <br>
+                }
+
+                @if (Model.MeasurementFilenames.Count > 0)
+                {
+                    @Html.ActionLink("Measurement File(s)", "DownloadZipFile", "App", new { sessionID = Model.SessionID, path = Model.MeasurementExportDirectory }); <span class="badge">@Model.MeasurementFilenames.Count.ToString()</span>
+                    <br>
+                }
+
+            </div>
+            <br>
+        </form>
+    </div>
+
+</div>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    <br>
+    <a href="~/App/TestView/download">Download via link</a>
+    <br>
+    <a asp-action="Download">Download</a>
+    <br>
+    @Html.ActionLink("Html actionlink", "TestView/download", "App")
+*@
+
+

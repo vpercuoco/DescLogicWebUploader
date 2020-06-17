@@ -1,0 +1,67 @@
+﻿@*This is the generic layout format that will be applied to all my html pages*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+
+
+    <environment names="development">
+        <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
+    </environment>
+    <environment names="production">
+        <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
+    </environment>
+    
+</head>
+<body>
+    <header class="html5header c1 nxg">
+        <h1>Desc Datamining</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href='~/App/Index'>Home</a></li>
+            <li><a href='#'>About</a></li>
+            <li><a href='~/App/UploadFilePage'>Upload files</a></li>
+            <li><a href='~/App/TestView'>TestModel</a></li>
+        </ul>
+    </nav>>
+    <section>
+        <div>
+            <label>@ViewBag.Title </label>
+        </div>
+        @RenderBody()
+    </section>
+    <footer>
+        <div>Copyright IODP 2020</div>>
+    </footer>
+
+
+    <environment names="development">
+        <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/index.js"></script>
+
+        @*Below is saying to create a section called scripts in all the html views that use this layout*@
+        @*Each view's scripts section applys only to the html in its own view*@
+        @*I had to add the packages jquery-validation and jquery-validation to the package.json file for this to work correctly*@
+        @RenderSection("scripts", false) @*False indicates it is not required on every view*@
+         
+    </environment>
+
+    <environment names="production">
+        <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/index.js"></script>
+
+        @*Below is saying to create a section called scripts in all the html views that use this layout*@
+        @*Each view's scripts section applys only to the html in its own view*@
+        @*I had to add the packages jquery-validation and jquery-validation to the package.json file for this to work correctly*@
+        @RenderSection("scripts", false) @*False indicates it is not required on every view*@
+    </environment>
+</body>
+
+</html>
